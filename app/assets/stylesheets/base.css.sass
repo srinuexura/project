@@ -1,0 +1,180 @@
+// COLORS
+$b1: #5186a7
+$b2: #26678e
+$o: #f18721
+$y: #f2b81b
+$g: #52bc7d
+$y: #d94227  
+$gry: #555
+
+// TYPOGRAPHY
+$base-font-size: 16px
+$base-line-height: 24px
+
+// GRID
+$zen-column-count: 12
+$zen-gutter-width: 30px
+
+// Other Vars
+$default-transition-function: ease-in-out
+
+// Shadow Mixins
+@mixin ts-dark
+  +text-shadow(0 -1px 0 rgba(0, 0, 0, 0.25))
+@mixin ts-dark-over
+  +text-shadow(0 -1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(0, 0, 0, 0.25),  -1px 0 0 rgba(0, 0, 0, 0.25), 1px 0 0 rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.25))
+@mixin ts-light
+  +text-shadow(0 1px 0 rgba(255, 255, 255, 0.5))
+@mixin ts-light-over
+  +text-shadow(0 1px 0 rgba(255, 255, 255, 0.5), 0 -1px 0 rgba(255, 255, 255, 0.5), 1px 0 0 rgba(255, 255, 255, 0.5), -1px 0 0 rgba(255, 255, 255, 0.5), 0 0 0 rgba(255, 255, 255, 0.5))
+@mixin heading-font
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif
+  font-weight: 300
+@mixin body-font
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif
+  font-weight: 400
+@mixin bold-font
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif
+  font-weight: 600
+@mixin super-bold-font
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif
+  font-weight: 800
+
+@mixin serif-font
+  font-family: Georgia, Cambria, serif
+@mixin twist
+  +transform(skew(-20deg))
+@mixin untwist
+  +transform(skew(20deg))
+@mixin ilb
+  display: inline-block
+// Button Mixins
+@mixin btn($clr: $o)
+  background: darken($clr, 5)
+  color: #fafafa
+  +ts-dark-over
+  +box-shadow(inset 0 -2px 1px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.5))
+  border: 1px solid rgba(0, 0, 0, 0.5)
+  boder-top-color: transparent
+  border-right-width: 2px
+  border-left-width: 2px
+  +border-radius(0.25em)
+  +adjust-font-size-to(16px)
+  display: inline-block
+  padding: 0.5em 1em
+  +transition(.1s)
+  +bold-font
+  vertical-align: middle
+  +background-image(linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5)))
+  &:hover
+    text-decoration: none
+    +background-image(linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)))
+  &:active
+    color: #fafafa
+    +box-shadow(inset 0 2px 1px rgba(0, 0, 0, 0.25), inset 0 -1px 2px rgba(255, 255, 255, 0.5))
+    +background-image(linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.05)))
+
+// Global Styles
+ul, ol
+  list-style: none
+  padding: 0
+a 
+  color: $o
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+  &:active
+    color: $g
+
+
+.fwc
+  width: 80%
+  margin: 0 auto
+  min-width: 1080px
+.abs
+  position: relative
+body
+  //background-image: url("noise.png")
+  color: #444
+  +ts-light
+  +body-font
+.ar
+  text-align: right
+
+.btn
+  +btn
+.btn_green
+  +btn($g)
+.btn_red
+  +btn($y)
+.btn_blue
+  +btn($b1)
+.btn_black
+  +btn(#222)
+
+span.big
+  font-size: 1.5em
+  vertical-align: top
+  font-weight: bold
+
+span.medium
+  font-size: 1.25em
+  vertical-align: baseline
+  font-weight: bold
+        
+
+.twist
+  +twist
+.untwist
+  +untwist
+
+h1, h2, h3
+  +heading-font
+  color: $o
+h4, h5, h6
+  color: $b1
+
+@font-face
+  font-family: "WebRupee"
+  font-style: normal
+  font-weight: normal
+  src: local("WebRupee"), url("http://cdn.webrupee.com/WebRupee.V2.0.ttf") format("truetype"), url("http://cdn.webrupee.com/WebRupee.V2.0.woff") format("woff"), url("http://cdn.webrupee.com/WebRupee.V2.0.svg") format("svg")
+
+
+.WebRupee
+  font-family: 'WebRupee'
+  font-size: 0.75em
+
+a:hover img
+  text-decoration: 0
+  boreder: 0
+  outline: 0
+
+.ac
+  text-align: center
+
+
+input[type="submit"], iframe input[type="submit"]
+  +btn
+
+iframe
+  background: transparent
+
+#contact-us
+  padding: 0
+#contact_form
+  padding: 1em 20%
+  width: 100%
+  +clearfix
+  background: #fff
+  margin-top: 1em
+
+#new-customer
+  width: 80%
+  margin: 0 auto
+  min-width: 1080px
+
+a.remove
+  display: block
+  color: #888
+  margin-top: 1em

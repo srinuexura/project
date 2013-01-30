@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 13.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 14948)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0"
+	 id="svg8302" inkscape:output_extension="org.inkscape.output.svg.inkscape" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" sodipodi:version="0.32" inkscape:version="0.46" sodipodi:docname="pictograms-nps-misc-beach_access.svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="256px" height="256px"
+	 viewBox="0 0 256 256" enable-background="new 0 0 256 256" xml:space="preserve">
+<defs>
+	
+	
+		<inkscape:perspective  id="perspective8310" inkscape:vp_z="744.09448 : 526.18109 : 1" inkscape:vp_x="0 : 526.18109 : 1" inkscape:vp_y="0 : 1000 : 0" sodipodi:type="inkscape:persp3d" inkscape:persp3d-origin="372.04724 : 350.78739 : 1">
+		</inkscape:perspective>
+</defs>
+<sodipodi:namedview  id="base" showgrid="false" objecttolerance="10" guidetolerance="10" inkscape:zoom="0.7" pagecolor="#ffffff" gridtolerance="10000" borderopacity="1.0" inkscape:cy="136.73676" inkscape:cx="61.634556" bordercolor="#666666" inkscape:window-y="198" inkscape:window-x="0" inkscape:window-height="674" inkscape:window-width="738" inkscape:current-layer="layer1" inkscape:document-units="px" inkscape:pageshadow="2" inkscape:pageopacity="0.0">
+	</sodipodi:namedview>
+<g id="layer1" inkscape:label="Layer 1" inkscape:groupmode="layer">
+	<g id="g3186" transform="matrix(25.903066,0,0,-25.903066,225.43438,256)">
+		<path id="path3188" fill="#FAFAFA" d="M0,0c0.652,0,1.182,0.529,1.182,1.182v7.521c0,0.652-0.53,1.18-1.182,1.18h-7.521
+			c-0.653,0-1.182-0.528-1.182-1.18V1.182C-8.703,0.529-8.174,0-7.521,0H0z"/>
+	</g>
+	<g id="g3190" transform="matrix(25.903066,0,0,-25.903066,30.604576,5.1652786)">
+		<path id="path3192" fill="#FAFAFA" d="M0,0c-0.542,0-0.982-0.44-0.982-0.98v-7.522c0-0.541,0.44-0.982,0.982-0.982h7.521
+			c0.542,0,0.981,0.441,0.981,0.982v7.522C8.502-0.44,8.063,0,7.521,0H0z"/>
+	</g>
+	<g id="g3194" transform="matrix(25.903066,0,0,-25.903066,18.311188,152.665)">
+		<path id="path3196" fill="#61BB49" d="M0,0c0.563,0.663,1.588,1.128,2.467,0.981c0.098,1.207-0.039,2.337,0.563,3.45
+			C1.162,4.308,0.295,1.455,0,0"/>
+	</g>
+	<g id="g3198" transform="matrix(25.903066,0,0,-25.903066,189.81767,97.799408)">
+		<path id="path3200" fill="#21B8F1" d="M0,0c0.393,0.467,1.32,0.705,1.807,0.268c-1.27,1.773-2.84,2.912-5.072,2.154
+			C-1.52,1.891-0.297,0.263,0,0"/>
+	</g>
+	<g id="g3202" transform="matrix(25.903066,0,0,-25.903066,180.71036,99.669817)">
+		<path id="path3204" fill="#F24E4F" d="M0,0c-0.61,0.852-2.529,2.212-2.952,2.127c-0.451-0.09-0.575-2.645-0.534-3.193
+			c0.267,0.502,0.676,0.88,1.15,1.116l1.947-5.299l0.266,0.066l-1.965,5.34C-1.438,0.398-0.691,0.377,0,0"/>
+	</g>
+</g>
+</svg>

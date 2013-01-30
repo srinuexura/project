@@ -1,0 +1,11 @@
+
+-# - if @product.price_per_child
+-#   .split.left50
+-#     .small{:title=>"(upto 12 years of age)"} per child *
+-#     .price.big
+-#       = number_to_indian_currency(@product.price_per_child.to_i)
+-# - if @product.price_per_adult
+-#   .split.right50
+-#     .small per adult
+-#     .price.big
+-#       = number_to_indian_currency(@product.price_per_adult.to_i)

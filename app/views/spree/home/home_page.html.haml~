@@ -1,0 +1,109 @@
+#home_slider.blueberry
+  %ul.slides.crop
+    - 7.times do |i|
+      %li
+        = image_tag "home_slider/#{i+1}.jpg"
+  .slider_texture
+#BigMarketingMessage
+  %h1 Just For you! we bring gamut of adventure activities from all around India.
+#cannonball
+  %h2 Search Activities
+  %h4 Plan your most thrilling vacation with us yet!
+  - @taxons = @taxon && @taxon.parent ? @taxon.parent.children : Spree::Taxon.roots
+  = form_tag activities_path, :method => :get do
+    -# = select_tag :taxon,                               |
+    -# options_for_select([[t(:all_departments), '']] + |
+    -# @taxons.map {|t| [t.name, t.id]},              |
+    -# @taxon ? @taxon.id : params[:taxon])             |
+    // .field
+    //   %label Vacation start date
+    //   %input{:type => "date", :value => "#{ params[:as].blank? ? Date.today : params[:as]}", :name=>"as"}
+    // .field
+    //   %label Vacation end date
+    //   %input{:type => "date", :value => "#{ params[:ae].blank? ? Date.today : params[:as]}", :name=>"ae"}
+    
+    .field
+      %label{:for=>"activity_type"} Activity Type
+      = select_tag :act, options_for_select(Spree::Product.non_empty_activities_names_list, params[:act]), {:include_blank => 'Select activity type'}
+    .field
+      %label{:for=>"level"} Level
+      = select_tag :lvl, options_for_select(Spree::Product::LEVELS, params[:lvl]), {:include_blank => 'Select activity level'}
+    .field
+      %label{:for=>"location"} Location
+      = select_tag :loc, options_for_select(Spree::Product.active_cities_list, params[:loc]), {:include_blank => 'Select activity location'}
+    .field.ar
+      = submit_tag t(:search), :name => nil, :class=>"btn"
+#carousel
+  %h2 Browse Actitvities
+  .car_wrapper
+    - Spree::Taxon.all_activity_types.each do |act|
+      - if act.active_activities_count > 0
+        %a.activity_box{:href=>products_path(:act=>act.name)}
+          .img
+            = image_tag act.icon.url(:original), :class=>"pictogram"
+          .detail
+            %h4= act.name.titleize
+            .number
+              = pluralize(act.active_activities_count, 'activity')
+            .number
+              from
+              = number_to_currency act.prices_starting_from rescue ''
+#main_container
+  .left_col
+    %div{"data-hook" => "___homepage_featured_products"}
+      %h3
+        Featured Activities
+      - @featured.each do |pr|
+        - @product = pr
+        %a.box{:href=>url_for(@product), :title=>"#{@product.name} | #{@product.location}"}
+          - if @product.images[0]
+            .img{:style=>"background-image: url('#{@product.images[0].attachment.url(:small)}')"}
+            .details
+              %h3
+                = @product.name.truncate 30
+              %p.infos
+                = image_tag @product.activity_type.icon, :class=>"pictogram" rescue ''
+                %span= @product.activity_type.name.titleize rescue ''
+                \/
+                %span.price= number_to_currency @product.price rescue ''
+                \/
+                = @product.location
+                \/
+                = @product.level
+              %p
+                = @product.description.truncate(240) rescue ''
+
+  -# - unless @featured.nil?
+  -#   .left_col
+  -#     %div{"data-hook" => "homepage_featured_products"}
+  -#       %h3 Featured Activities
+  -#       = render :partial => 'spree/products/product_box', :locals => {:products => @featured}, :collection => @feaured
+  .right_col
+    %h5 Videos
+    %iframe{:height => 200, :width => 300, :frameborder => "0", :src => "http://www.youtube.com/embed/fKmSF0sf31g"}
+    -# feed = Feedzirra::Feed.fetch_and_parse("http://exurajourneys.wordpress.com/category/videos/feed")
+    -# = feed.to_json
+    -# - feed.entries.each do |e|
+    -#   .post
+    -#     .post_title
+    -#       = e.title
+    -#     %p
+    -#       = e.summary.truncate(140)
+    -#       %a.fr.more{:href=> e.url, :target=>"blank"} more
+    -# %h5 Adventure Zone
+    -# - feed.entries[0..4].each do |e|
+    -#   .post
+    -#     .post_title= e.title
+    -# %h5 Recent Videos
+    -# - feed.entries[0..4].each do |e|
+    -#   .post
+    -#     .post_title= e.title
+      
+  - content_for :sidebar do
+    -# %div{"data-hook" => "homepage_sidebar_navigation"}
+      -# = render :partial => 'spree/shared/taxonomies'
+    -# %div{"data-hook" => "homepage_products"}
+      -# = render :partial => 'spree/shared/products', :locals => { :products => @products } unless @products
+  -# %div{"data-hook" => "homepage_products"}
+  -#   = render :partial => 'spree/products/product_box', :collection => @products, :as => :product unless @products
+

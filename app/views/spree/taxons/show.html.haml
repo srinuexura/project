@@ -1,0 +1,17 @@
+#main_container.fwc
+  %h3.taxon-title
+    = image_tag @taxon.icon.url(:original), :class=>"activity_icon"
+    = accurate_title
+    %span.small
+      .untwist
+        .twist= pluralize @taxon.products.active.count, "activity"
+  - content_for :sidebar do
+    %div{"data-hook" => "taxon_sidebar_navigation"}
+      = render :partial => 'spree/shared/taxonomies'
+      = render :partial => 'spree/shared/filters' if @taxon.children.empty?
+  - unless params[:keyword].present?
+    %div{"data-hook" => "taxon_children"}
+      = render :partial => 'taxon', :collection => @taxon.children
+
+  - if @taxon.products && @taxon.parent
+    = render :partial => 'spree/shared/products', :locals => { :products => taxon_preview(@taxon), :taxon => @taxon }

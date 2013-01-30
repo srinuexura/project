@@ -1,0 +1,15 @@
+#footer
+  .footer_links
+    .fwc
+      - ["Home"].each do |item| 
+        %a{:href=>'/'}= item.titleize
+      - ["Activities", "Contact"].each do |item|
+      - url = '/' + item.gsub(' ',' ').underscore 
+        %a{:href=>url}= item.titleize
+      - ["About Us", "Faqs", "Partners And Operators", "Privacy Policy", "Terms And Conditions"].each do |item|
+      - url = '/pages/' + item.gsub(' ', '').underscore
+        %a{:href=>url}= item.titleize
+#copy
+  .fwc
+    &copy; 2000 - 2020, Exura.in, All rights reserved.
+

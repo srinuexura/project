@@ -1,0 +1,106 @@
+%div{"data-hook" => "admin_product_form_fields"}
+  .clearfix
+    .left{"data-hook" => "admin_product_form_left"}
+      = f.inputs :name=>"Basic Details" do
+        = f.input :name,            :required=> true,    :hint=>"This is the title of the activity. Appears in h1"
+        = f.input :taxons,          :required=> true,:as => :select, :collection=> Spree::Taxon.all_activity_types, :hint => "Logically an activity can belong to multiple taxons. But please select one.", :input_html => { :style => "height: 10em" }
+        %br
+        = f.input :featured, :hint=>"Featured activities will be shown on the home page"
+        = f.input :street_address, :required=> true
+        = f.input :city,           :required=> true
+        = f.input :state,          :required=> true,:as => :select, :collection=> Spree::Product::LIST_OF_STATES, :required=>true
+        = f.input :level,               :as => :select, :collection=> Spree::Product::LEVELS, :required=>true, :hint=>"Level of the activity", :selected => "#{@product.level.blank? ? '' : @product.level}"
+        = f.input :duration,            :hint=> "the duration of activity. in minutes, to maintain uniformity.", :input_html => {:value => 30}
+        = f.input :description,         :hint=> "This is a brief 2-3 line description", :as=>"text"
+     
+        -# = f.input :min_passengers_reqd, :required=>true,                                :class=>"fl", :input_html => {:value => 1}
+        -# = f.input :max_passengers_reqd, :required=>true,                                :input_html => {:value => 1}
+      = f.inputs :name => "for generating map" do
+        %h6
+          you can use 
+          %a{:href=>"http://www.findlatitudeandlongitude.com/", :target=>"blank"}a service like this one
+          to find on the lat and long positions
+        .small
+          default coordinates are set to bangalore
+        = f.input :latitude, :input_html => {:value => "#{@product.new_record? ? 12.9716060 : @product.latitude}"}
+        = f.input :longitude, :input_html => {:value => "#{@product.new_record? ? 77.5943760 : @product.longitude}"}
+        = f.input :zoom_level, :input_html => {:value => "#{@product.new_record? ? 3 : @product.zoom_level}"}
+      = f.inputs :name=>"HTML fields" do
+        - ["Overview", "Highlights", "Features", "Exclusions", "Cancellation Policy"].each do |field|
+          = f.input field.underscore.gsub(' ', '_' ).to_sym, :as=>"text", :input_html=>{:class=>"wysiwyg"}
+    .right{"data-hook" => "admin_product_form_right"}      
+      = f.inputs :name => "When does this go live on the site?" do
+        = f.input :available_on
+      = f.inputs :name => "What is the bookable period?", :class => "price_matrix"  do
+        = f.input :bookable_from, :hint => "Start of booking range", :as => :string, :input_html => { :type => "date" }
+        = f.input :bookable_to, :hint => "End of booking range", :as => :string, :input_html => { :type => "date" }
+      = f.inputs :name => "Pricing Details", :class => "price_matrix" do
+        = f.input :price, :hint => "Price per adult per day, used only for display purposes"
+        -# = f.semantic_fields_for :exura_price_options do |pof|
+        -#   - Date::DAYNAMES.each do |dow|
+        -#     = pof.input :"price_on_#{dow.downcase}", :as => :number
+      - if Spree::Config[:track_inventory_levels]
+        = f.inputs :name => "Day Wise Stock", :class => "price_matrix" do
+          .small Number of units per day
+          - Date::DAYNAMES.each do |day|
+            = f.input "on_hand_on_#{day.downcase}".to_sym, :label => "on #{day}"
+
+     
+
+
+
+      -# = f.inputs do
+      -#   = f.input :price, :as=> :hidden, :input_html => {:value => "#{@product.price ? @product.price : '' }"}
+      -#   = f.input :cost_price, :as=> :hidden, :input_html => {:value => "#{@product.cost_price ? @product.price : '' }"}
+
+
+      -# = f.field_container :available_on do
+      -#   = f.label :available_on, t(:available_on)
+      -#   %br/
+      -#   = f.error_message_on :available_on
+      -#   = f.text_field :available_on, :class => 'datepicker'
+
+
+      -# - unless @product.has_variants?
+      -#   = f.field_container :sku do
+      -#     = f.label :sku, t(:sku)
+      -#     %br/
+      -#     = f.text_field :sku, :size => 16
+
+      = f.inputs :name => "for SEO purposes" do
+        = f.input :permalink, :hint => "please change it only once"
+        = f.input :meta_description, :as => :text
+        = f.input :meta_keywords
+
+
+        -# - if Spree::Config[:track_inventory_levels]
+        -#   = f.field_container :on_hand do
+        -#     = f.label :on_hand, t(:on_hand)
+        -#     %br/
+        -#     = f.number_field :on_hand, :min => 0
+      -#   %ul#shipping_specs
+      -#     %li#shipping_specs_weight_field
+      -#       = f.label :weight, t(:weight)
+      -#       = f.text_field :weight, :size => 4
+      -#     %li#shipping_specs_height_field
+      -#       = f.label :height, t(:height)
+      -#       = f.text_field :height, :size => 4
+      -#     %li#shipping_specs_width_field
+      -#       = f.label :width, t(:width)
+      -#       = f.text_field :width, :size => 4
+      -#     %li#shipping_specs_depth_field
+      -#       = f.label :depth, t(:depth)
+      -#       = f.text_field :depth, :size => 4
+      -# = f.field_container :shipping_categories do
+      -#   = f.label :shipping_category_id, t(:shipping_categories)
+      -#   %br/
+      -#   = f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, { :include_blank => true }, { 'style' => 'width:200px' })
+      -#   = f.error_message_on :shipping_category
+      -# = f.field_container :tax_category do
+      -#   = f.label :tax_category_id, t(:tax_category)
+      -#   %br/
+      -#   = f.collection_select(:tax_category_id, @tax_categories, :id, :name, { :include_blank => true }, { 'style' => 'width:200px' })
+      -#   = f.error_message_on :tax_category
+  -# %div{"data-hook" => "admin_product_form_additional_fields"}
+  -#   - Spree::Variant.additional_fields.select { |af| af[:only].nil? || af[:only].include?(:product) }.each do |field|
+  -#     = render :partial => 'spree/admin/shared/additional_field', :locals => { :field => field, :f => f }

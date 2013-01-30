@@ -1,0 +1,6 @@
+- if !@product.taxons.blank?
+  #taxon-crumbs.alpha.columns.five.omega{"data-hook" => ""}
+    %div{"data-hook" => "product_taxons"}
+      %ul#similar_items_by_taxon{"data-hook" => ""}
+        - @product.taxons.each do |taxon|
+          %li= link_to taxon.name, seo_url(taxon)

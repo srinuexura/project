@@ -1,0 +1,22 @@
+- if @product
+  .activity_strip
+    %h1= @product.name
+    .info_bar
+      -# = render :partial => "price_top_bar"
+      %a.info_bit{:href=> products_path(:loc=>@product.city)}
+        .icon16= image_tag "icons/new/map.png"
+        %span.detail= @product.city.titleize rescue ''
+      - x = rand(5) + 1
+      %a.info_bit{:href=>'#'}
+        .icon16= image_tag "icons/new/duration.png"
+        %span.detail= pluralize(@product.duration, "min")
+      %a.info_bit{:href=> products_path(:lvl=>@product.level), :title=>"this is #{@product.level} activity"}
+        .icon16{:style=>"margin-right: -20px"}
+        %span.detail= @product.level
+      - @product.taxons.each do |txn|
+        - if txn.is_activity_type? 
+          - @act_typ = txn
+          %a.info_bit{:href=>products_path(:act=>@act_typ.name)}
+            .icon16
+              = image_tag @act_typ.icon
+            %span.detail= @act_typ.name.titleize

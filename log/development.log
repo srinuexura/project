@@ -1,0 +1,14 @@
+Connecting to database specified by database.yml
+  [1m[36m (0.5ms)[0m  [1mselect owner_id, owner_type, name, value from spree_preferences where `key` is null[0m
+  [1m[35mSpree::AuthenticationMethod Load (258.9ms)[0m  SELECT `spree_authentication_methods`.* FROM `spree_authentication_methods` WHERE `spree_authentication_methods`.`environment` = 'development'
+  [1m[36mSpree::AuthenticationMethod Load (0.8ms)[0m  [1mSELECT `spree_authentication_methods`.* FROM `spree_authentication_methods` WHERE `spree_authentication_methods`.`environment` = 'development'[0m
+  [1m[35mSpree::AuthenticationMethod Load (0.7ms)[0m  SELECT `spree_authentication_methods`.* FROM `spree_authentication_methods` WHERE `spree_authentication_methods`.`environment` = 'development'
+  [1m[36mSpree::Preference Load (1.0ms)[0m  [1mSELECT `spree_preferences`.* FROM `spree_preferences` WHERE (`spree_preferences`.`key` IS NOT NULL) AND (`spree_preferences`.`value_type` IS NOT NULL)[0m
+  [1m[35mSpree::MailMethod Load (0.8ms)[0m  SELECT `spree_mail_methods`.* FROM `spree_mail_methods` WHERE `spree_mail_methods`.`environment` = 'development' LIMIT 1
+Connecting to database specified by database.yml
+  [1m[36m (0.5ms)[0m  [1mselect owner_id, owner_type, name, value from spree_preferences where `key` is null[0m
+  [1m[35mSpree::AuthenticationMethod Load (24.5ms)[0m  SELECT `spree_authentication_methods`.* FROM `spree_authentication_methods` WHERE `spree_authentication_methods`.`environment` = 'development'
+  [1m[36mSpree::AuthenticationMethod Load (0.6ms)[0m  [1mSELECT `spree_authentication_methods`.* FROM `spree_authentication_methods` WHERE `spree_authentication_methods`.`environment` = 'development'[0m
+  [1m[35mSpree::AuthenticationMethod Load (0.5ms)[0m  SELECT `spree_authentication_methods`.* FROM `spree_authentication_methods` WHERE `spree_authentication_methods`.`environment` = 'development'
+  [1m[36mSpree::Preference Load (0.9ms)[0m  [1mSELECT `spree_preferences`.* FROM `spree_preferences` WHERE (`spree_preferences`.`key` IS NOT NULL) AND (`spree_preferences`.`value_type` IS NOT NULL)[0m
+  [1m[35mSpree::MailMethod Load (0.8ms)[0m  SELECT `spree_mail_methods`.* FROM `spree_mail_methods` WHERE `spree_mail_methods`.`environment` = 'development' LIMIT 1

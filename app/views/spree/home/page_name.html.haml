@@ -1,0 +1,16 @@
+#main_container.pages
+  - case @page_name
+  - when "partners_and_operators"
+    = render :partial => 'spree/shared/partner'
+  - when "about_us"
+    %h3 This is the About Us page
+    = render :partial => 'spree/shared/aboutus'
+  - when "privacy_policy"
+    = render :partial => 'spree/shared/privacy'   
+  - when "terms_and_conditions"
+    = render :partial => 'spree/shared/team'
+  -when "faqs"  
+    = render :partial => 'spree/shared/faqs'
+     
+           
+

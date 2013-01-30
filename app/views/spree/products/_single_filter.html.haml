@@ -1,0 +1,14 @@
+- params_arr = [:lvl, :loc, :act]
+- if search.facet(facet_name.to_sym).rows.any?
+  %h5= heading
+  - unless params[params_key.to_sym].present?
+    - search.facet(facet_name.to_sym).rows.each do |facet|
+      - if facet_name == "activity_type_nameas"
+        - img = Spree::Taxon.find_by_name(facet.value).icon 
+        = link_to ("<img class='pict_icon' src= '" + img.url + "' />#{facet.value} <span class='small'>(#{facet.count})</span>").html_safe, add_filter_url(params_key.to_s, facet.value), :class => "act_type filter" 
+      - else
+        = link_to "#{facet.value} <span class='small'>(#{facet.count})</span>".html_safe, add_filter_url(params_key.to_s, facet.value), :class => "filter"
+
+  - else
+    %a.selected{:href=>'#', :title=>"reset this filter"}= params[params_key.to_sym] 
+

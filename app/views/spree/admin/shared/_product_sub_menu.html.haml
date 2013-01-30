@@ -1,0 +1,6 @@
+- content_for :sub_menu do
+  %ul#sub_nav{"data-hook" => "admin_product_sub_tabs"}
+    = tab :activities
+    = tab :option_types, :match_path => '/option_types'
+    = tab :properties
+    = tab :prototypes

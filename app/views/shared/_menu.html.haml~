@@ -1,0 +1,10 @@
+%ul#nav
+  %li{:class=>"#{request.path=='/' ? 'active' : ''}"}
+    %a{:href=>'/'}
+      %span= "Home"
+  %li{:class=>"#{@current=='products' ? 'active' : ''}"}
+    %a{:href=>'/activities'}
+      %span= "Actions"
+  %li{:class=>"#{@current=='products' ? 'active' : ''}"}
+    %a{:href=>'/contact'}
+      %span= "Contact Us"

@@ -1,0 +1,6 @@
+- if Spree::Promotion.count > 0
+  .five.columns.alpha.offset-by-nine.coupon-code-field
+    = order_form.label :coupon_code
+    %br
+    = order_form.text_field :coupon_code, :size => 20
+    = order_form.submit I18n.t(:apply)

@@ -1,0 +1,47 @@
+- paginated_products ||= products
+- if products.empty?
+  = t(:no_products_found)
+- elsif params.key?(:keywords)
+  %h6.search-results-title= t(:search_results, :keywords => h(params[:keywords]))
+- if products.any?
+  %ul#products.inline.product-listing{"data-hook" => ""}
+    - reset_cycle('default')
+    - products.each do |product|
+      - if Spree::Config[:show_zero_stock_products] || product.has_stock?
+        %li{:class => "columns three #{cycle("alpha", "secondary", "", "omega secondary", :name => "classes")}", "data-hook" => "products_list_item", :id => "product_#{product.id}", :itemscope => "", :itemtype => "http://schema.org/Product"}
+          .product-image.ilb
+            .overlay
+            = image_tag product.product.images[0].attachment.url rescue ''
+          .product-details
+            = link_to truncate(product.name, :length => 50), product.product, :class => 'info', :itemprop => "name", :title => product.name, :class => "product-title"
+            -# .pretty_price= pretty_printable_prices(product) 
+            .info_bar
+              %span.price
+                = number_to_currency product.price
+              %a.info_bit{:href => products_path(:loc=>product.city)}
+                %span.detail= product.city.titleize rescue ''
+              %a.info_bit{:href=>'#'}
+                %span.detail= pluralize(product.duration, "min")
+              - if product.level
+                %a.info_bit{:href => products_path(:lvl=>product.level)}
+                  %span.detail= product.level
+              - if defined?(hide_activity_type) &&  !hide_activity_type
+                - product.taxons.each do |txn|
+                  - if txn.is_activity_type? 
+                    - @act_typ = txn
+                    %a.info_bit{:href=>seo_url(@act_typ)}
+                      .icon16
+                        = image_tag @act_typ.icon
+                      %span.detail= @act_typ.name.titleize
+            .overview= product.description.truncate(140) rescue ''
+            -# %br
+            -#   %strong Availability
+            -#   = product.bookable_on.strftime('%b %d, %Y') rescue ''
+            -#   |
+            -#   = "(#{product.on_hand})" rescue ''
+
+          -# %span.price.selling{:itemprop => "price"}= number_to_indian_currency product.price
+
+    - reset_cycle("classes")
+-# - if paginated_products.respond_to?(:num_pages)
+-#   = paginate paginated_products

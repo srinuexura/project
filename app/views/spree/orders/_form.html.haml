@@ -1,0 +1,13 @@
+= render :partial => 'spree/shared/error_messages', :locals => { :target => @order }
+%table#cart-detail{"data-hook" => ""}
+  %thead
+    %tr{"data-hook" => "cart_items_headers"}
+      %th.cart-item-description-header{:colspan => "2"}= t(:item)
+      %th.cart-item-price-header= t(:price)
+      %th.cart-item-quantity-header= t(:qty)
+      %th.cart-item-total-header Subtotal
+      %th.cart-item-delete-header
+  %tbody#line_items{"data-hook" => ""}
+    = order_form.fields_for :line_items do |item_form|
+      = render :partial => 'line_item', :locals => { :variant => item_form.object.variant, :line_item => item_form.object, :item_form => item_form }
+= render "spree/orders/adjustments" unless @order.adjustments.eligible.blank?

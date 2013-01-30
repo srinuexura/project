@@ -1,0 +1,18 @@
+- @product ||= product
+%a.box{:href=>url_for(@product), :title=>"#{@product.name} | #{@product.location}"}
+  - if @product.images[0]
+    .img{:style=>"background-image: url('#{@product.images[0].attachment.url(:small)}')"}
+  .details
+    %h3
+      = @product.name.truncate 30
+    %p
+      = image_tag @product.activity_type.icon, :class=>"pictogram" rescue ''
+      %span= @product.activity_type.name.titleize rescue ''
+      \/
+      %span.price= number_to_currency @product.price rescue ''
+      \/
+      = @product.location
+      \/
+      = @product.level
+    %p
+      = @product.description.truncate(240) rescue ''

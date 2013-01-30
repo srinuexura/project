@@ -1,0 +1,91 @@
+@import compass
+@import zen
+@import base
+
+#main_container
+  a.taxon_title:hover
+    text-decoration: none
+  .taxon_title
+    h4
+      border-bottom: 0
+
+
+
+
+
+
+.taxon_children
+  +clearfix
+  background: rgba(0, 0, 0 ,0.1)
+
+.taxon_children>.taxon
+  width: 49%
+  float: left
+
+
+.pretty_price
+  .item
+    margin-right: 1%
+    color: #888
+    font-weight: 600
+  .small
+    color: #666
+    font-size: 0.8em
+    font-weight: 300
+    
+.taxon-title
+  h2, h3, h4
+    border: 0
+  
+.taxon-title .small
+  padding-left: 15px
+
+.product-details
+
+  .info_bar, .icon16
+    display: inline-block
+    .info_bit
+      color: #888
+      &:hover
+        text-decoration: none
+        color: $o
+  .icon16
+    vertical-align: middle
+    
+.product-details>a.info_bit:first-child
+  padding-left: 0
+  margin-left: 0
+
+.product-details .info_bar
+  padding-left: 0
+  .info_bit:after
+    content: "/"
+    font-size: 2em
+    color: #ddd
+    display: inline-block
+    vertical-align: middle
+    font-weight: 300
+  .info_bit:last-of-type:after
+    content: none
+
+.taxon
+  float: left
+  width: 48%
+  clear: none
+
+.activities .product-listing>li
+  width: 100%
+  margin-bottom: 1em
+
+.taxon 
+  position: relative
+  overflow: hidden
+  min-height: 30em
+  .activity_icon
+    height: 20em
+    +opacity(0.05)
+    +filter(greyscale)
+    position: absolute
+    top: 5%
+    right: 10%
+    z-index: -1

@@ -1,0 +1,80 @@
+= render :partial => 'spree/admin/shared/product_sub_menu'
+= render :partial => 'spree/shared/error_messages', :locals => { :target => @product }
+= semantic_form_for [:admin, @product], :html => { :multipart => true } do |f|
+  .left{"data-hook" => "admin_product_form_left"}
+    = f.inputs :name => "Basic Info" do
+      = f.input :name
+      = f.input :product_type, :as => :select, :collection => Spree::Product::PRODUCT_TYPES
+      
+      = f.input :price, :as => :hidden, :input_html => { :value => 0 }
+      -# = f.input :prototype_id, :as=>:select, :collection=> Spree::Prototype.all, :hint=>"Select a prototype if you want to base this on one."
+  .right
+    = f.inputs :name => "Some more info" do
+      = f.input :street_address
+      = f.input :city
+      = f.input :state, :hint => "filling these now will help search and edit this later.", :as=>:select, :collection => Spree::Product::LIST_OF_STATES
+      
+      #product-from-prototype.clearfix{"data-hook" => "product-from-prototype"}
+        = render :file => 'spree/admin/prototypes/show' if @prototype
+        = render :partial => 'spree/admin/shared/new_resource_links'
+
+  -# .right
+  -#   %h3 word of advice
+  -#   %br
+  -#   %p An activity should contain only static desctiption and other information that remain unchanged across variants.
+  -#   %p To add pricing and inventory information, please create a variant (select from 'for child', 'for adult', 'for both') and provide the appropriate data there. The master price field is to be left blank for all practical purposes.
+
+
+
+  -# %fieldset{"data-hook" => "new_product"}
+  -#   = f.field_container :name do
+  -#     = f.label :name, t(:name)
+  -#     %span.required *
+  -#     %br/
+  -#     = f.text_field :name, :class => 'fullwidth title'
+  -#     = f.error_message_on :name
+  -#   .clearfix{"data-hook" => "new_product_attrs"}
+  -#     .left
+  -#       - unless @product.has_variants?
+  -#         = f.field_container :sku do
+  -#           = f.label :sku, t(:sku)
+  -#           %br/
+  -#           = f.text_field :sku, :size => 16
+  -#           = f.error_message_on :sku
+  -#       = f.field_container :prototype do
+  -#         = f.label :prototype_id, t(:prototype)
+  -#         %br/
+  -#         = f.collection_select :prototype_id, Spree::Prototype.all, :id, :name, :include_blank => true
+  -#     .right
+  -#       = f.field_container :price do
+  -#         = f.label :price, t(:master_price)
+  -#         %span.required *
+  -#         %br/
+  -#         = f.text_field :price
+  -#         = f.error_message_on :price
+  -#       %p
+  -#         = f.label :available_on, t(:available_on)
+  -#         %br/
+  -#         = f.error_message_on :available_on
+  -#         = f.text_field :available_on, :class => 'datepicker', :style => "width:150px"
+  -#   #product-from-prototype.clearfix{"data-hook" => "product-from-prototype"}
+  -#     = render :file => 'spree/admin/prototypes/show' if @prototype
+  -#   = render :partial => 'spree/admin/shared/new_resource_links'
+:javascript
+  //
+    (function($){
+      var base_url = "#{admin_prototypes_url}";
+      var prototype_select = $('#product_prototype_id');    
+      prototype_select.change(function() {
+        var id = prototype_select.val();
+        if (id.length) {
+          $('#product-from-prototype').load([ base_url, id ].join("/"));
+        } else {
+          $('#product-from-prototype').empty();
+        }
+      })
+      if (prototype_select.html() == "") {
+        prototype_select.change();
+      }
+    })(jQuery);
+  //

@@ -1,0 +1,15 @@
+#user_cp.twist
+  -# - if current_user
+  -#   Hi 
+  -#   %span.medium= "#{current_user.email.truncate 15} &#9660;".html_safe
+  -#   .dd
+  -#     %ul.link_list
+  -#       %li
+  -#         %a{:href=>'/account'} Account
+  -#       %li
+  -#         = link_to "Log out", destroy_user_session_path, :method => :delete
+
+  -# - else
+  %span.medium
+    %a{:href=>'/login'} Login
+    %a{:href=>'/signup'} Subscribe

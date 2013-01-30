@@ -1,0 +1,41 @@
+= render :partial => 'spree/admin/shared/product_sub_menu'
+= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Variants'}
+%table.index.sortable{"data-sortable-link" => update_positions_admin_product_variants_path(@product)}
+  %tr{"data-hook" => "variants_header"}
+    %th= t(:options)
+    %th= t(:price)
+    %th= "Bookable on"
+    %th= "On Hand"
+    %th= t(:action)
+  %tbody
+    - @variants.each do |variant|
+      - next if variant.option_values.empty? 
+      %tr{:id=> spree_dom_id(variant), :data => {:hook => "variants_row"}, :class=>"#{variant.deleted? ? 'deleted_row': ''}"}
+        %td= variant.option_values[0].name
+        %td
+          = number_to_currency variant.price 
+          %span.small= "(#{variant.bookable_on_dow})"
+        %td= Date.parse(variant.option_values[0].presentation).strftime('%b %d, %Y') rescue ''
+        %td= variant.on_hand rescue ''
+        %td{:valign => "top"}
+          = link_to_edit(variant) unless variant.deleted?
+          = link_to_delete(variant) unless variant.deleted?
+
+-#     - unless @product.has_variants?
+-#       %tr
+-#         %td{:colspan => "9"}= t(:none)
+- if @product.empty_option_values?
+  -# %p.first_add_option_types{"data-hook" => "first_add_option_types"}
+  -#   = t(:to_add_variants_you_must_first_define)
+  -#   = link_to t(:option_types), selected_admin_product_option_types_url(@product)
+  -#   = t(:and)
+  -#   = link_to t(:option_values), admin_option_types_url
+- else
+  #new_variant{"data-hook" => ""}
+  %br/
+  %p#new_var_link{"data-hook" => ""}
+    = link_to icon('add') + ' ' + t(:new_variant), new_admin_product_variant_url(@product), :remote => :true, 'data-update' => 'new_variant', :class => 'iconlink new'
+    \|
+    
+    \#{link_to @deleted.blank? ? t(:show_deleted) : t(:show_active), admin_product_variants_url(@product, :deleted => @deleted.blank? ? "on" : "off")}
+  = image_tag 'spinner.gif', :plugin => 'spree', :style => 'display:none;', :id => 'busy_indicator'

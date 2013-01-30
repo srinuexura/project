@@ -1,0 +1,20 @@
+%br
+#filters
+  %a.remove.fr{:href=>"/activities"} (clear all filters)
+  = render :partial => "single_filter", :locals => { :search => @search, :facet_name => "level", :heading => "Difficulty Levels", :params_key => "lvl", :params_arr => [:lvl, :loc, :act]  }
+  -# %h3 Dates
+  %form
+    -# .field.date_range
+    -#   %input{:type=>"date", :name=>"as", :placeholder=>"Vacation start date", :value=>params[:as]}
+    -#   %input{:type=>"date", :name=>"ae", :placeholder=>"Vacation end date", :value=>params[:ae]}
+    -#   %input.btn{:type => "submit", :value=>"Go"}
+
+
+  = render :partial => "single_filter", :locals => { :search => @search, :facet_name => "activity_type_name", :heading => "Activity Types", :params_key => "act" }
+
+  = render :partial => "single_filter", :locals => { :search => @search, :facet_name => "city", :heading => "Locations", :params_key => "loc" }
+    
+  -#= render :partial => "single_filter", :locals => { :search => @search, :facet_name => "bookable_on", :heading => "Booking Date", :params_key => "act" }
+
+  -#= render :partial => "single_filter", :locals => { :search => @search, :facet_name => "price", :heading => "Price", :params_key => "act" }
+

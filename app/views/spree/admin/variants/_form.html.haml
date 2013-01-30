@@ -1,0 +1,35 @@
+%div{"data-hook" => "admin_variant_form_fields"}
+  .clearfix
+    .left{"data-hook" => "variants"}
+      %br
+      - @product.options.each do |option|
+        %p{"data-hook" => "presentation"}
+          = label :new_variant, option.option_type.presentation
+          - if @variant.new_record?
+            = select(:new_variant, option.option_type.presentation,                        |
+              option.option_type.option_values.collect {|ov| [ ov.presentation, ov.id ] }, |
+              {})                                                                          |
+          - else
+            - opt = @variant.option_values.detect {|o| o.option_type == option.option_type }.presentation
+            = text_field(:new_variant,  option.option_type.presentation, :value => opt, :disabled => 'disabled')
+      %br
+      = f.inputs :name => "Day Wise Pricing", :class => "price_matrix" do
+        = f.input :price, :label=> "Default Price", :input_html => {"data-hook" => "price"}
+
+
+
+
+      -# %p{"data-hook" => "cost_price"}
+      -#   = f.label :cost_price, t(:cost_price)
+      -#   = f.text_field :cost_price, :value => number_with_precision(@variant.cost_price, :precision => 2)
+      -# - if Spree::Config[:track_inventory_levels]
+      -#   %p{"data-hook" => "on_hand"}
+      -#     = f.label :on_hand, t(:on_hand)
+      -#     = f.text_field :on_hand
+    .right
+      = f.input :bookable_on, :input_html => { :disabled => "#{@variant.new_record? ? 'false' : 'disabled'}" }
+
+      
+    -# .right
+    -#   - Spree::Variant.additional_fields.select{|af| af[:only].nil? || af[:only].include?(:variant) }.each do |field|
+    -#     = render :partial => 'spree/admin/shared/additional_field', :locals => { :field => field, :f => f }

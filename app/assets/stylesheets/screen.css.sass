@@ -1,0 +1,1109 @@
+/*
+  Welcome to Compass.
+  In this file you should write your main styles. (or centralize your imports)
+  Import this file using the following HTML or equivalent:
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+@import compass
+@import normalize
+@import base
+@import zen
++establish-baseline
+
+
+body
+  background-color: #f0f0f0
+  +background-image(linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0)))
+#header, #minibar
+  width: 100%
+  +body-font
+
+#header_ribbon
+  width: 100%
+  display: block
+  background: #444
+  background: rgba(0, 0, 0, 0.85)
+  +adjust-font-size-to(12px)
+  color: #fafafa
+  margin-bottom: 5px
+
+#header
+  display: block
+  border-bottom: 1px dotted #ccc
+  +background-image(linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)))
+  +box-shadow(0 3px 5px 2px rgba(0, 0, 0 ,0.5))
+  .container.fwc
+    position: relative
+  .logo
+    display: inline-block
+    +background-image(radial-gradient(color-stops(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)), 50% 50%))
+    img
+      height: 120px
+      
+    
+#nav, .nav
+  display: inline-block
+  padding-right: 60px
+  padding-left: 40px
+  +clearfix
+  +body-font
+  margin-bottom: 0px
+  li
+    float: left
+    +adjust-font-size-to(20px)
+    +transition(.1s)
+    a
+      border: 2px solid transparent
+      +border-radius(0.1em)
+      display: inline-block
+      color: #777
+      padding: 0.5em 1em
+      +transition(.1s)
+      +transform(skew(-20deg))
+      +ts-light-over
+      +border-radius(0.5em)
+      span
+        +transform(skew(20deg))
+        display: block
+      &:hover
+        text-decoration: none
+    &:last-child a
+      border-right: none
+    &:first-child a
+      border-left: none
+    &:hover a
+      border-bottom-color: $o
+    &:active a
+      color: $g
+  li.active, li.active:hover, li.active:active
+    a
+      border: 1px solid #fff
+      background-color: $b1
+      color: #fafafa
+      +ts-dark-over
+      text-decoration: none
+      cursor: default
+      +box-shadow(inset 0 0 3px 1px  rgba(0, 0, 0, 0.5), inset 0 0 7px rgba(0, 0, 0, 0.25))
+      +bold-font
+
+#minibar
+  display: none
+  position: fixed
+  top: 1px
+  z-index: 10000
+  padding-top: 0
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25)
+  border-top: 1px solid rgba(255, 255, 255, 0.25)
+  +box-shadow(0 0 2px rgba(0, 0, 0, 0.5), 0 3px 1px rgba(0, 0, 0, 0.15))
+  background-color: rgba(#fafafa, 0.9)
+  //+background-image(linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)))
+  +background-image(linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1)))
+  +transition(0.1s)
+  .icon16 img
+    vertical-align: middle
+    margin-right: 1px
+    height: 16px
+  .fwc1
+    display: inline-block3
+    margin: auto 2.5%
+  .prev, .next
+    padding: 0 20px
+    padding-bottom: 1em
+    display: inline-block
+    color: #444
+    .small
+      display: block
+      +adjust-font-size-to(10px)
+      +super-bold-font
+    .big
+      +adjust-font-size-to(16px)
+      +body-font
+    &:hover
+      background: #444
+      color: #fafafa
+      +ts-dark
+      background: rgba(#444, 0.75)
+  .prev
+    text-align: right
+    padding-left: 10px
+    border-right: 1px dotted #ccc
+  .next
+    text-align: left
+    padding-right: 10px
+    border-left: 1px dotted #ccc
+  .nav
+    vertical-align: middle
+  .logo
+    display: inline-block
+    vertical-align: middle
+  .logo img
+    height: 60px
+  li
+    +adjust-font-size-to(12px)
+    a:not('.active')
+      color: #666
+  .price
+    font-size: 1.1em
+  .fwc1
+    padding: 0 2%
+    display: inline-block
+    margin-left: auto
+    margin-right: auto
+    min-width: 600px
+  .activity_strip
+    display: inline-block
+    width: 80%
+    vertical-align: bottom
+    h1
+      font-size: 18px
+      +ts-light-over
+      margin-bottom: 0
+    .info_bar
+      display: block
+      margin-top: 0
+      +adjust-font-size-to(12px)
+  .btn
+    vertical-align: middle
+      
+#user_cp, #contact_info
+  float: right
+#contact_info
+  position: absolute
+  top: 0.5em
+  left: 260px
+  color: #666
+  +ts-light-over
+  +adjust-font-size-to(10px)
+  .phone
+    color: $b1
+.tabbed_nav
+  +zen-clear
+  text-align: right
+  +body-font
+  +adjust-font-size-to(14px)
+  padding: 0.25em 0.5em
+  border-bottom: 1px dotted #ccc
+  height: 2em
+  margin-bottom: 3em
+  margin-top: 3em
+  .tab
+    float: left
+    display: block
+    color: #666
+    +transition(.1s)
+    img
+      height: 24px
+      vertical-align: top
+    a
+      display: block
+      padding: 0.5em 10px
+      color: #444
+      +border-radius(0.5em)
+      &:hover
+        color: $b1
+      &:active
+        color: $g
+    &:first-of-type
+      margin-left: -1em
+      a
+        border-left: 0
+
+  .tab.active
+    a, a:hover, a:active
+      background: $b1
+      color: #fafafa
+      +ts-dark-over
+      +box-shadow(inset 0 0 3px 1px  rgba(0, 0, 0, 0.5), inset 0 0 7px rgba(0, 0, 0, 0.25))
+      cursor: default
+      text-decoration: none
+#user_cp
+  margin-top: 7.5em
+  +adjust-font-size-to(12px)
+  position: relative
+  padding: 0 10px
+  border: 1px solid transparent
+  border-bottom: 0
+  margin-right: 2.5%
+  .dd
+    position: absolute
+    right: -20px
+    top: -300px
+    //top: 2em
+    background: $b1
+    background: rgba($b1, 0.9)
+    +transition(0.1s)
+    border: 1px solid transparent
+    border-top: 0
+    z-index: 100000
+    +opacity(0)
+    width: 120%
+  .link_list
+    min-width: 150px
+    text-align: right
+    a
+      +bold-font
+      color: #fafafa
+      +ts-dark
+      border: 1px solid transparent
+      border-left: 0
+      border-right: 0
+      display: block
+      padding-right: 20px
+      &:hover
+        text-decoration: none
+        background: $g
+        border-color: #ccc
+        +box-shadow(0 0 3px  rgba(0, 0, 0, 0.25), -2px 0 0 rgba(0, 0, 0, 0.25), 2px 0 0 rgba(0, 0, 0, 0.25))
+  &:hover
+    background: $b1
+    background: rgba($b1, 0.9)
+    color: #fafafa
+    +ts-dark
+    border-color: #ccc
+    +box-shadow(0 -3px 1px  rgba(0, 0, 0, 0.65), -2px 0 0 rgba(0, 0, 0, 0.65), 2px 0 0 rgba(0, 0, 0, 0.65))
+    .dd
+      +opacity(1)
+      top: 2em
+      border-color: #ccc
+      +box-shadow(0 3px 1px  rgba(0, 0, 0, 0.65), -2px 0 0 rgba(0, 0, 0, 0.65), 2px 0 0 rgba(0, 0, 0, 0.65))
+
+#main_container
+  +clearfix
+  max-width: 80%
+  min-width: 1080px
+  margin: 0 auto
+  +zen-grid-container
+  padding: 1em
+  padding-top: 0
+
+#home_slider
+  position: relative
+  height: 300px
+  .slider_texture
+    display: none
+    position: absolute
+    background-image: url('textures/new/08.png')
+    left: 0
+    top: 0
+    +opacity(0.25)
+    z-index: 10
+    width: 100%
+    height: 300px
+  img
+    width: 100%
+    height: 300px
+    min-height: 300px
+    max-height: 300px
+  .slides
+    margin-top: 0
+    z-index: -1
+    //border-bottom: 1px dotted #444
+#cannonball
+  +zen-grid-item(3.5, 8)
+  color: #fafafa
+  +border-radius(0.5em)
+  +ts-light
+  display: block
+  z-index: 100
+  padding-bottom: 0.25em
+  input[type="text"]
+    background: transparent
+    border: 0
+    outline: 0
+    border-bottom: 2px dotted #ccc
+    padding: 0.125em 0
+    padding-left: 5px
+    color: $o
+    &:hover
+      border-bottom-color: rgba($o, 0.95)
+    &:focus
+      border-bottom: 2px solid #666
+      background: rgba(#222, 0.95)
+      color: #fafafa
+      border-bottom-color: rgba(#222, 0.95)
+  h4
+    margin: 0.25em 0
+    +bold-font
+  .field
+    margin: 0.25em 0
+  .field.ar
+    margin-top: 0.5em
+  .btn
+    padding-left: 1.5em
+    padding-right: 1.5em
+
+  label
+    display: inline-block
+    width: 100px
+    color: #222
+    text-align: right
+    margin-right: 5px
+    font-weight: normal
+#carousel
+  +zen-grid-item(6, 2)
+  background-color: transparent
+  text-align: center
+  +border-radius(0.5em)
+
+.activity_box
+  text-align: center
+  display: inline-block
+  color: #444
+  vertical-align: top
+  +transition(.1s)
+  width: 17.5%
+  &:active
+    h4
+      color: $g
+    .number, .price
+      +body-font
+      color: #444
+  &:hover
+    .detail
+      h4
+        text-decoration: none
+    text-decoration: none
+      
+  .img
+    display: block
+    height: 6em
+    img
+      height: 6em
+  .detail
+    margin-top: 3px
+    border: 1px solid transparent
+    border-left: 0
+    padding: 0
+    +border-radius(0 0.5em 0.5em 0)
+    +body-font
+    h4
+      margin: 0
+      padding-top: 0
+    .number
+      +adjust-font-size-to(12px)
+      +body-font
+      margin-top: -5px
+    .price
+      +serif-font
+      +adjust-font-size-to(12px)
+      margin-top: -5px
+      .WebRupee, .amount
+        color: $o
+        font-size: 1.25em
+
+.activity_strip
+  h1
+    margin: 0 auto
+    +ts-light
+    +adjust-font-size-to(48px)
+  .info_bar
+    color: #666
+    margin-top: 0.5em
+    .price
+      font-size: 24px
+      vertical-align: middle
+      color: $o
+      +serif-font
+    a
+      color: #666
+      border-bottom: 1px solid transparent
+      &:hover
+        text-decoration: none
+        border-bottom: 1px solid $b1
+    .icon16 img
+      height: 24px
+    .detail
+      vertical-align: bottom
+    .info_bit
+      height: 27px
+      display: inline-block
+      padding-right: 10px
+      padding-left: 5px
+    .level
+      vertical-align: baseline
+    .icon16 
+      height: 24px
+      width: 24px
+      display: inline-block
+      vertical-align: middle
+
+#col84
+  margin-top: 1em
+  +zen-clear
+  .left
+    +zen-grid-item(8, 1)
+    padding-left: 0
+    border-right: 1px dotted #ccc
+  .right
+    +zen-grid-item(4, 9)
+    border-left: 1px dotted #fafafa
+  .left, .right
+    display: block
+    p
+      +adjust-font-size-to(16px)
+
+
+.content_box
+  .heading
+    //background: $b1
+    padding-left: 0px
+    margin-left: 0px
+    //color: #fafafa
+    color: $b1
+    +adjust-font-size-to(20px)
+    //+ts-dark
+    border-bottom: 1px dotted #ccc
+  .small
+    +adjust-font-size-to(12px)
+
+.availability
+  margin-top: 0.5em
+  width: 100%
+  line-height: 3em
+  span
+    padding: 0.35em 3%
+    margin: 0
+  span.av, span.true
+    width: 14.2%
+    background: darken($g, 10)
+    color: #fafafa
+    +ts-dark
+    +bold-font
+    font-size: 1.25em
+    border-top: 1px dotted #ccc
+    border-bottom: 1px dotted #ccc
+    +box-shadow(0 -2px rgba(0, 0, 0, 0.6), 0 2px rgba(0, 0, 0, 0.6))
+  span.notav, span.false
+    text-decoration: line-through
+    font-size: 0.9em
+    width: 14.2%
+    background: #ccc
+    color: #fafafa
+.price
+  +serif-font
+.split
+  width: 45%
+  display: inline-block
+  margin-left: 8%
+  vertical-align: top
+.split.left50
+  margin-left: 0
+  text-align: right
+.price_box
+  color: #666
+  span.small
+    font-weight: 300
+  .price
+    +adjust-font-size-to(32px)
+
+.price_box .price.fixed_group
+  text-align: center
+  .big
+    font-size: 36px
+  .small
+    font-size: 12px
+    font-weight: 300
+  .WebRupee
+    font-size: 20px
+.book_now_box
+  margin-bottom: 1em
+  padding-bottom: 1em
+  padding-left: 2.5%
+  margin-left: -2.5%
+  margin-top: 1em
+  .heading
+    color: $o
+    font-size: 24px
+    padding-top: 5px
+    margin: 0.5em auto
+  
+.activity_strip .btn
+  float: right
+  
+
+form
+  .field.num
+    display: inline-block
+    width: 46%
+  .field
+    margin-bottom: 1em
+    label
+      display: inline-block
+      vertical-align: bottom
+      text-align: right
+      width: 100px
+      +adjust-font-size-to(14px)
+      margin-right: 10px
+      +bold-font
+    input[type="number"]
+      width: 60px
+      font-size: 20px
+      text-align: right
+      padding-right: 5px
+    input[type="text"], input[type="number"]
+      border: 0
+      color: #444
+      border-bottom: 2px dotted #888
+      +adjust-font-size-to(18px)
+      +transition(.1s)
+      &:hover
+        border-bottom-color: $o
+      &:focus
+        color: #fafafa
+        +ts-dark
+        background: #444
+      
+.book_now_btn
+  width: 50%
+  margin: 0 10%
+  margin-left: 110px
+  text-align: center
+  +adjust-font-size-to(20px)
+  display: block
+
+
+#header.hidden_children > *
+  display:none
+
+
+.box
+  width: 100%
+  margin-bottom: 1em
+  display: block
+  +opacity(0.95)
+  cursor: pointer
+  color: #666
+  +transition(0.1s)
+  border-right: 2px solid transparent
+  .pictogram
+    vertical-align: middle !important
+  .price
+    color: $o
+  &:hover
+    +opacity(1)
+    color: #666
+    +box-shadow(3px 0 rgba(0, 0, 0 ,0.5), inset -2px 0 rgba(0, 0, 0, 0.1))
+    border-right-color: $b2
+    h3
+      color: $b1
+
+  .img
+    display: inline-block
+    vertical-align: top
+    width: 35%
+    height: 200px
+    background-size: cover
+    +box-shadow(inset -2px 0 1px rgba(0, 0, 0, 0.5))
+    border: 1px solid #fafafa
+    border-left: 0
+    +border-radius(0.5em 0 0 0.5em)
+  .details
+    +adjust-font-size-to(14px)
+    display: inline-block
+    width: 60%
+    margin-left: 1%  
+  h3
+    margin-top: 0
+    margin-bottom: 0
+    color: #666
+  .pictogram
+    height: 20px
+    vertical-align: bottom
+
+.infos
+  font-weight: 600
+.level 
+  .full
+    color: $o
+  .empty
+    +opacity(0.25)
+
+
+
+#main_container
+  h2, h3, h4
+    border-bottom: 1px dotted #ccc
+  h2, h3
+    color: $b1
+  h4, h5, h6
+    color: $o
+    +bold-font
+  h6
+    +super-bold-font
+  h1
+    +adjust-font-size-to(48px)
+  h2
+    +adjust-font-size-to(36px)
+  h3
+    +adjust-font-size-to(30px)
+  h4
+    +adjust-font-size-to(24px)
+  h5
+    +adjust-font-size-to(20px)
+  h6
+    +adjust-font-size-to(16px)
+    text-decoration: underline
+
+
+li.angle_bullets
+  +adjust-font-size-to(14px)
+  +transition(.1s)
+  &:hover
+    &:before
+      color: $o
+      font-size: 3em
+  &:before
+    content: "›"
+    font-size: 2em
+    color: #ccc
+    display: inline-block
+    vertical-align: text-bottom
+    margin-right: 1%
+    margin-left: 1%
+
+
+ol.numbered_list
+  counter-reset: li
+  margin-left: 0
+  padding-left: 0
+  margin-left: 3%
+  li
+    list-style: none
+    +adjust-font-size-to(14px)
+    &:hover
+      &:before
+        color: $o
+        font-size: 2em
+        margin-right: 1%
+    &:before
+      content: counter(li)
+      counter-increment: li
+      position: absolute
+      display: inline-block
+      vertical-align: text-bottom
+      margin-left: -1.5%
+      font-size: 1em
+      color: #ccc
+      margin-right: 1.5%
+      +transition(.1s)
+      width: 1%
+      text-align: center
+
+table.zebra
+  width: 100%
+  td
+    padding: 0.25em 2.5%
+  thead
+    background: #444
+    color: #fafafa
+    +ts-dark
+
+
+ol.tab_content
+  border-bottom: 1px dotted #ccc
+  padding-bottom: 2.5em
+  margin-bottom: 1.5em
+  li
+    display: block
+    width: 100%
+  .tab_content
+    display: block
+    +adjust-font-size-to(14px)
+
+#gallery
+  margin: 1em 0
+  margin-top: 2em
+  padding-left: 0
+  margin-left: 0
+.gallery_thumb
+  height: auto
+  display: inline-block
+  width: 25%
+.gallery_image
+  width: 100%
+  display: inline-block
+  +box-shadow(inset 0 0 2px 1px rgba(0, 0, 0, 0.5))
+
+.tab_content
+  h2, h3, h4
+
+
+.taxon
+  .activity_icon
+    height: 36px
+    +ilb
+    vertical-align: middle
+  +zen-clear
+  .activities
+    +ilb
+.taxon_title
+  display: block
+  .small
+    +adjust-font-size-to(8px)
+    background: $o
+    color: #fafafa
+    +border-radius(0.25em)
+    padding: 0.25em
+    +ts-dark
+
+
+ul#products.inline.product-listing
+  display: block
+  >li
+    display: block
+    margin-bottom: 1em
+    +transition(0.1s)
+    &:hover
+      .product-title
+        color: $o
+      .pretty_price .item
+        color: $b1
+  .product-image
+    position: relative
+    +ilb
+    +border-radius(0.5em)
+    img
+      height: 6em
+      +border-radius(0.5em)
+      +box-shadow(inset 0 0 6px rgba(0, 0, 0, 0.25), inset 0 2px 3px rgba(0, 0, 0, 0.1), 0 0 3px rgba(255, 255, 255, 0.75))
+      border: 1px solid rgba(0, 0, 0, 0.5)
+    .overlay
+      width: 100%
+      height: 6em
+      z-index: 10
+      border: 1px solid transparent
+      +box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.6))
+      +border-radius(0.5em)
+      +background-image(linear-gradient(top left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1)))
+      top: 0
+      left: 0
+      position: absolute
+    
+.info_bar .price span.small
+  +adjust-font-size-to(10px)
+  color: #888
+
+
+.taxon-title
+  .activity_icon
+    height: 1.5em
+    vertical-align: middle
+  .small
+    display: inline-block
+    border-left: 2px solid $o
+    padding: 0 0.25em
+    font-size: 0.5em
+    font-weight: 600
+.product-details
+  padding-left: 0.5em
+  +ilb
+  width: 60%
+  vertical-align: top
+  margin-bottom: 1em
+  .overview
+    display: block
+  .product-title
+    +transition(0.1s)
+    +adjust-font-size-to(20px)
+    font-weight: 600
+    color: $b1
+    display: block
+  .info_bar
+    display: block
+  a.info_bit
+    color: #666
+    font-weight: 400
+    padding: 0.25em 
+  .price
+    +body-font
+    color: $o
+    +adjust-font-size-to(16px)
+  .icon_16
+    float: left
+  .overview
+    +adjust-font-size-to(12px)
+
+.left_col
+  +zen-grid-item(7, 1)
+.right_col
+  +zen-grid-item(4, 8)
+
+#main_container
+  min-height: 30em
+  +zen-clear
+  +clearfix
+#footer
+  background-color: darken($g, 20)
+  width: 100%
+  height: 5em
+  display: block
+  color: #444
+  +zen-clear
+  +ts-light
+  +background-image(linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)))
+  +box-shadow(inset 0 4px 5px rgba(0, 0, 0, 0.1))
+  border-top: 2px solid $g
+#copy
+  color: #fafafa
+  +ts-dark-over
+  +adjust-font-size-to(10px)
+  font-weight: 600
+  text-align: right
+  background-color: rgba(0, 0, 0 ,0.1)
+    
+    
+#main_container strong
+  font-weight: 800
+
+
+.order_form
+  text-align: center
+  li 
+    list-style-type: none
+  label
+    font-weight: 800
+    font-size: 11px
+    display: block
+      
+
+.hidden
+  display: none
+
+#filters
+  +zen-grid-item(3,1)
+  background: #fafafa
+  a.filter
+    color: #555
+    display: block
+    +transition(0.1s)
+    &:hover
+      color: $b1
+      text-decoration: none
+      font-weight: 800
+      letter-spacing: 1px
+    .small
+      font-size: 0.85em
+  h5
+    color: $o
+    font-weight: 300
+    padding-bottom: 0.5em
+    margin-bottom: 0
+  .selected
+    color: $b1
+    font-weight: 800
+    letter-spacing: 1px
+    +transition(0.1s)
+#search_results
+  +zen-grid-item(6, 4)
+
+
+#search_results
+  .title
+    color: $o
+    border-bottom: 0
+
+
+
+#cart-detail
+  width: 100%
+  thead
+    background: $b1
+    th
+      padding: 5px 10px
+      color: #fafafa
+      +ts-dark
+      +adjust-font-size-to(20px)
+      font-weight: 300
+      text-align: left
+  .title
+    color: $o
+    padding-top: 0
+    margin-top: 0
+    padding-bottom: 0.5em
+    margin-bottom: 0
+  .cart-item-image
+    width: 10%
+    img
+      width: 100%
+  tbody
+    background: #fff
+    td
+      padding: 10px
+    tr
+      border-bottom: 1px dotted #fafafa
+  .cart-item-price, .cart-item-total, .cart-item-price-header, .cart-item-total-header, 
+    padding-right: 20px
+    padding-left: 0
+    text-align: right
+    width: 10%
+  .cart-item-quantity
+    width: 10%
+    input
+      width: 100%
+
+#cart_form
+  .links
+    text-align: right
+
+#subtotal
+  text-align: right
+  margin-top: 0
+  color: $b1
+  background: #fff
+  padding: 10px
+  margin-top: -1px
+  margin-bottom: 1em
+  font-weight: 600
+  +adjust-font-size-to(20px)
+  padding-right: 7.5%
+  border-top: 1px solid $b1
+#update-button
+  +adjust-font-size-to(13px)
+  margin-right: 5%
+
+.btn.checkout
+  +adjust-font-size-to(20px)
+  &:after
+    content: "»"
+
+
+
+
+
+fieldset
+  border: 0
+  +border-radius(0)
+  background: transparent
+  legend
+    +adjust-font-size-to(20px)
+    font-weight: 300
+  label
+    display: block
+    color: $o
+    font-weight: 600
+  ol
+    list-style-type: none
+    padding: 0
+    margin: 0
+    li
+      padding-left: 0
+      margin-left: 0
+  input
+    border-color: rgba(100, 100, 150, 0.2)
+    +transition(0.1s)
+    +border-radius(0.25em)
+    color: #777
+    +adjust-font-size-to(16px)
+    padding: 0.25em 0.5em 
+    &:hover
+      border-color: $b2
+    &:focus
+      background-color: #ccc
+      color: #555
+  li.input
+    margin-bottom: 1em
+
+.act_type.filter
+  height: 2em
+  img.pict_icon
+    vertical-align: middle
+    margin-right: 0.5em
+    +opacity(0.25)
+    height: 1.5em
+    +transition(0.15s)
+  &:hover
+    img.pict_icon
+      height: 2.25em
+      +opacity(1)
+#filters a.reset.selected
+  &:hover
+    color: #800
+    text-decoration: line-through
+
+
+
+.progress-steps
+  +clearfix
+  >li 
+    float: left
+    background: #ccc
+    width:  22%
+    text-align: center
+    padding: 0.5em
+  >li.current-first
+    background: $o
+    color: #fafafa
+    font-size: 20px
+    +ts-dark
+
+#main_container .fwc
+  +zen-clear
+  +clearfix
+
+#main_container #line_items .line_item
+  +clearfix
+  padding: 0.5em 0
+  border-bottom: 1px dotted rgba(0, 0, 0 ,0.1)
+  h3
+    color: $b1
+    font-weight: bold
+
+
+#BigMarketingMessage
+  background: $b1
+  text-align: center
+  padding: 0.5em 0
+  +ts-dark
+  h1
+    color: #fafafa
+      
+
+.post
+  border-bottom: 1px dotted #ccc
+  padding: 0.5em 0
+  +clearfix
+  +adjust-font-size-to(14px)
+  .post_title
+    color: $b1
+  color: #666
+  a.more
+    color: #ccc
+    float: right
+    font-size: 10px
+    +transition(0.1s)
+  &:hover
+    a.more
+      color: $o
+      font-weight: bold
+      letter-spacing: 1px
+
+
+
+.gallery
+  +clearfix
+.left
+  +zen-clear
+
+#contact-us
+  width: 80%
+  margin: 0 auto
+
+.footer_links
+  background: rgba(0, 0, 0, 0.1)
+  padding-top: 2em
+  a
+    padding: 0.5em 
+    color: #fafafa
+    +ts-dark
+    +adjust-font-size-to(12px)
+
+
+#main_container.pages
+  font-size: 0.85em
+
+li.faq
+  margin-bottom: 1em
+  .que 
+    font-weight: 60
+    color: $b1
+  .ans

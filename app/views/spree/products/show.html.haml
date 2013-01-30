@@ -1,0 +1,124 @@
+- @act = ['FourWheelDrive', 'WaterSurfing', 'WhaleViewing', 'IceFishing', 'SkiJump', 'Sailing', 'WaterMotorBoating', 'WaterCraft','Trekking', 'ScubaDiving', 'Sledding', 'MotorBikeTrail', 'CableCar']
+#main_contanier
+  #col84.fwc
+    = render :partial => "shared/activity_strip", :locals => {:product => @product}
+    .left
+      #gallery
+        - @product.images.each do |img|
+          %a.gallery_thumb{:href=>img.attachment.url(:original), :target=>"blank"}
+            = image_tag img.attachment.url(:product), :class=>"gallery_image"
+      %ol.tabbed_nav
+        - Spree::Product::TAB_FIELDS.each_with_index do |item, i|
+          %li.tab{:rel =>item}
+            %a.twist{:href=>'#'}
+              .untwist
+                = image_tag "icons/new/#{item}.png"
+                %span= item.titleize
+      %ol.tab_content
+        - Spree::Product::TAB_FIELDS.each_with_index do |item, i|
+          %li{:id =>item}
+            .tab_content
+              = BlueCloth.new(@product.send(item.to_sym)).to_html.html_safe
+      -# %ul
+      -#   - 5.times do
+      -#     %li.angle_bullets= Faker::Lorem.sentence
+      -# %ol.numbered_list
+      -#   - 5.times do
+      -#     %li= Faker::Lorem.sentence
+
+    .right
+      .content_box.price_box
+        %h4.heading
+          Price & Availability
+        -# - if @product.is_fixed_group_size_activity?  
+        -#   -# = render :partial => 'properties'
+        -#   = render :partial => "fixed_price_box", :locals => {:product => @product}
+        -# - else
+        .small{:title=>"(upto 12 years of age)"} per person *
+        .price.big
+          = number_to_indian_currency(@product.price.to_i)
+        -# %div.small this activity is available on the following days of the week
+        -# .availability
+        -#   - Date::DAYNAMES.each do |dow|
+        -#     %span{:class => @product.available_on_dow?(dow)}
+        -#       = dow[0..2].titleize
+          
+      .content_box.book_now_box
+        %h4.heading Book Now
+        %br
+        :javascript
+          id=155165; t=1; 
+          ctxt="Contact Me";
+        %script{:src => "http://kontactr.com/kpu/kontactr.js", :type => "text/javascript"}
+        %script
+          $('a[rel="facebox"]').addClass('btn').text('Send an Enquiry')
+        %br
+        %br
+        %span.small
+          or call us on +91-9845524873
+          -# %div{"data-hook" => "contact"}
+          -#   = render "spree/shared/error_messages", :target => @message
+          -#   %br/
+          -#   = form_for(SpreeContact.new, :url => contact_path) do |f|
+          -#     %div{"data-hook" => "contact_inside_form"}
+          -#       -# %p
+          -#       -#   = f.label :topic_id, t("subject")
+          -#       -#   %br/
+          -#       -#   = f.input_ :topic_id, @topics, :id, :name
+          -#       %p.field
+          -#         = f.label :name, t("name")
+          -#         %br/
+          -#         = f.text_field :name
+          -#       %p.field
+          -#         = f.label :email, t("email")
+          -#         %br/
+          -#         = f.text_field :email
+          -#       %p.field
+          -#         = f.label :order_number, t(:order_number)
+          -#         (#{t('optional')})
+          -#         %br/
+          -#         = f.text_field :order_number
+          -#       %p.field
+
+          -#         = f.label :message, t("message")
+          -#         %br/
+          -#         = f.text_area :message, :rows => 10
+            -#       %p= submit_tag t("send_message"), :class => 'btn'
+        -# = render :partial => 'cart_form'
+      .map.content_box
+        = gmaps({:map_options => {:auto_adjust=>true, :zoom=>@product.zoom_level}, :markers=> {:data => @product.to_gmaps4rails}})
+      -# .content_box.related_activities
+      -#   %h4.heading
+      -#     Related Activities
+      -#   = render :partial => "product_box", :collection => Spree::Product.active.limit(2), :as => :product
+
+
+
+
+
+
+
+    
+      -# %div{"data-hook" => "product_show", :itemscope => "", :itemtype => "http://schema.org/Product"}
+      -#   - @body_id = 'product-details'
+      -#   .columns.six.alpha{"data-hook" => "product_left_part"}
+      -#     .row{"data-hook" => "product_left_part_wrap"}
+      -#       #product-images{"data-hook" => "product_images"}
+      -#         #main-image{"data-hook" => ""}
+      -#           = render :partial => 'image'
+      -#         #thumbnails{"data-hook" => ""}
+      -#           = render :partial => 'thumbnails', :locals => { :product => @product }
+      -#       %div{"data-hook" => "product_properties"}
+      -#         = render :partial => 'properties'
+      -#   .columns.ten.omega{"data-hook" => "product_right_part"}
+      -#     .row{"data-hook" => "product_right_part_wrap"}
+      -#       #product-description{"data-hook" => "product_description"}
+      -#         %h1.product-title{:itemprop => "name"}= accurate_title
+      -#         %div{"data-hook" => "description", :itemprop => "description"}
+      -#           = product_description(@product) rescue t(:product_has_no_description)
+      -#         #cart-form{"data-hook" => "cart_form"}
+      -#           = render :partial => 'cart_form'
+      -#       = render :partial => 'taxons'
+
+
+

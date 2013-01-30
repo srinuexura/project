@@ -1,0 +1,14 @@
+- if @product.variant_for_adults
+  .info_bit
+    = number_to_indian_currency(@product.price_per_adult.to_i)
+    %span.small (per adult)
+- else 
+  - if @product.variant_for_children
+    .info_bit
+      = number_to_indian_currency(@product.price_per_child.to_i)
+      %span.small (per child under 14 yrs)
+  - else
+    - if @product.variant_for_boths
+      .info_bit
+        = number_to_indian_currency(@product.price_per_both.to_i)
+        %span.small (per person)

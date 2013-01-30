@@ -1,0 +1,55 @@
+-# #home_slider.blueberry
+-#   %ul.slides.crop
+-#     - 10.times do |i|
+-#       %li
+-#         = image_tag "slider/#{i+1}.jpg"
+-#   .slider_texture
+-#   .fwc.abs
+-#     #cannonball.twist
+-#       .untwist
+-#         %h4 Plan your most thrilling vacation with us yet!
+-#         %form
+-#           .field
+-#             %label Vacation Start Date
+-#             %input{:type=>"text"}
+-#           .field
+-#             %label Vacation End Date
+-#             %input{:type=>"text"}
+-#           .field
+-#             %label Destination
+-#             %input{:type=>"text"}
+-#           .field
+-#             %label Activity Type
+-#             %input{:type=>"text"}
+-#           .field
+-#             %label Activity Level
+-#             %input{:type=>"text"}
+-#           .field.ar
+-#             %a.btn.twist{:href=>"#"} Search &#9889;
+-# #carousel.fwc
+-#   - Spree::Taxon.all_activity_types.each do |act|
+-#     - if act.activity_count > 0
+-#       %a.activity_box{:href=>seo_url(act)}
+-#         .img
+-#           = image_tag act.icon.url(:original), :class=>"pictogram"
+-#         .detail
+-#           %h4= act.name.titleize
+-#           .number
+-#             = pluralize(act.activity_count, 'activity')
+-#   -# - ['FourWheelDrive', 'WaterSurfing', 'WhaleViewing', 'IceFishing', 'SkiJump', 'Sailing', 'WaterMotorBoating', 'WaterCraft','Trekking', 'ScubaDiving', 'Sledding', 'MotorBikeTrail', 'CableCar'].each do |item|
+-#   -#   %a.activity_box{:href=>'#'}
+-#   -#     .img
+-#   -#       = image_tag "pictograms/#{item}.png", :class=>"pictogram"
+-#   -#     .detail
+-#   -#       %h4= item.underscore.gsub('_',' ').titleize
+-#   -#       .number
+-#   -#         = pluralize((rand(100)+1), 'activity')
+-#   -#       .price
+-#   -#         starting from
+-#   -#         = number_to_indian_currency((rand(10)+1)*100)
+-# #main_container
+-# - content_for :sidebar do
+-#   %div{"data-hook" => "homepage_sidebar_navigation"}
+-#     = render :partial => 'spree/shared/taxonomies'
+-# %div{"data-hook" => "homepage_products"}
+-#   = render :partial => 'spree/products/product_box', :collection => @products, :as => :product unless @products

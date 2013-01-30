@@ -1,0 +1,4 @@
+%fieldset.nested-field
+  = f.input :starts_at, :as => :string, :label => "Available From", :input_html => {:type => "date"}
+  = f.input :ends_at, :as => :string, :label => "Available Till", :input_html => {:type => "date"}
+  %span= link_to_remove_fields "remove", f

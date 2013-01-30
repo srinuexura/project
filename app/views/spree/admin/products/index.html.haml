@@ -1,0 +1,66 @@
+= render :partial => 'spree/admin/shared/product_sub_menu'
+.toolbar{"data-hook" => "toolbar"}
+  %ul.actions
+    %li#new_product_link
+      = button_link_to "Create New Activity", new_object_url, {:remote => false, :icon => 'add', :id => 'admin_new_product'}
+  %br.clear/
+%h1 Listing All Activities
+
+%table#listing_products.index
+  %tr{"data-hook" => "admin_products_index_headers"}
+    %th= t(:sku)
+    %th= sort_link @search,:featured, "Featured", {}, {:title => "Featured on the home page" }
+    %th= sort_link @search,:is_active, "Active", {}, {:title => "Active currently" }
+    %th= sort_link @search,:created_at, "Created", {}, {:title => "Sort by creation date" }
+    %th= sort_link @search,:updated_at, "Last Updated", {}, {:title => "Sort by last updation date" }
+    %th= "Activity Type"
+    %th= sort_link @search,:city, t(:city), {}, {:title => "Sort by city"}
+    %th= sort_link @search,:state, t(:state), {}, {:title => "Sort by state" }
+    %th{:style=>"width: 25%" }= sort_link @search,:name, t(:name), { :default_order => "desc" }, {:title => 'admin_products_listing_name_title'}
+    %th Price
+
+    %th{:style=>"width: 170px", "data-hook" => "admin_products_index_header_actions"}
+  - @collection.each do |product|
+    <tr #{"style='color: red;'" if product.deleted?} id="#{spree_dom_id product}" data-hook="admin_products_index_rows">
+    %td= product.sku rescue '-'
+    %td= product.featured
+    %td= product.is_active?
+    %td= (time_ago_in_words product.created_at) + ' ago'
+    %td= (time_ago_in_words  product.updated_at) + ' ago'
+    %td= product.activity_type.name rescue ''
+    %td= product.state
+    %td= product.city 
+    %td= link_to product.try(:name), edit_admin_activity_path(product), :class=>"name_link", :title=>"Edit this activity"
+    %td= printable_prices(product)
+    %td.actions{"data-hook" => "admin_products_index_row_actions"}
+      = link_to_edit product, :class => 'edit' unless product.deleted?
+      \
+      \#{link_to_clone product, :class => 'clone'}
+      \
+      \#{link_to_delete product unless product.deleted?}
+= paginate @products
+- content_for :sidebar do
+  %div{"data-hook" => "admin_products_sidebar"}
+    = search_form_for [:admin, @search] do |f|
+      .box
+        %h3= t(:search)
+        - locals = {:f => f}
+        %div{"data-hook" => "admin_products_index_search"}
+          %p
+            = f.label :name_cont, t(:name)
+            = f.text_field :name_cont, :size => 15
+          %p
+            = f.label :city_cont, t(:city)
+            = f.text_field :city_cont, :size => 35
+          %p
+            = f.label :state_cont, t(:state)
+            = f.text_field :state_cont, :size => 35
+          %p
+            = f.label :variants_including_master_sku_cont, t(:sku)
+            = f.text_field :variants_including_master_sku_cont, :size => 15
+          %p
+            = f.label :deleted_at_null, t(:show_deleted)
+            = f.check_box :deleted_at_null, {:checked => params[:q][:deleted_at_null].blank?}, '', '1'
+        %div{"data-hook" => "admin_products_index_search_buttons"}
+          %p.form-buttons
+            = button t(:search)

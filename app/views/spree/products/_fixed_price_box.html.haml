@@ -1,0 +1,10 @@
+.small.ac
+  %em This is a fixed group sized activity.
+.price.ac.fixed_group
+  = number_to_indian_currency(product.price_today.to_i)
+  %strong.small
+    for group size between
+    %em= product.min_passengers_reqd
+    &
+    %em= product.max_passengers_reqd
+    people
